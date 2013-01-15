@@ -1,0 +1,29 @@
+GIT
+  remote: git@github.com:jondeandres/bunny.git
+  revision: 10513db20eada43b380adee392de38bc57bea948
+  tag: v0.9.0.pre4
+  specs:
+    bunny (0.9.0.pre4)
+      amq-protocol (>= 1.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    amq-protocol (1.0.1)
+    columnize (0.3.6)
+    debugger (1.2.3)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.5)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.6)
+    msgpack (0.5.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny!
+  debugger
+  msgpack

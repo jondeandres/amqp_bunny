@@ -1,0 +1,39 @@
+require 'bunny'
+require 'msgpack'
+
+class Producer
+  attr_reader :connection, :channel, :queue, :messages
+
+  def initialize(messages = 100)
+    @messages = messages
+    connect
+  end
+
+  def connect
+    # Create and start the connection with RabbitMQ
+    @connection = Bunny.new
+    @connection.start
+
+    # Create a channel
+    @channel = @connection.create_channel
+    # Create a queue with default_exchange, 'direct exchange'
+    @queue = @channel.queue('payments', durable: true, auto_delete: false)
+  end
+
+  private :connect
+
+  def run
+    messages.times do |i|
+      message = create_message(i)
+      queue.publish(message, routing_key: 'payments')
+    end
+  end
+
+  def create_message(value)
+    { type: 'payment',
+      params: {
+        value: value
+      }
+    }.to_msgpack
+  end
+end

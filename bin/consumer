@@ -1,0 +1,7 @@
+$LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
+
+require 'consumer'
+
+consumer = Consumer.new
+consumer.run
+consumer.connection.close
