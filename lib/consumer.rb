@@ -1,5 +1,6 @@
 require 'bunny'
 require 'msgpack'
+require 'json'
 
 class Consumer
   attr_reader :connection, :channel, :queue
@@ -19,7 +20,7 @@ class Consumer
   end
 
   private :connect
-require 'json'
+
   def run
     queue.subscribe(block: true) do |delivery_info, properties, payload|
       msg = MessagePack.unpack(payload)

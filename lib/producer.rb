@@ -23,10 +23,12 @@ class Producer
   private :connect
 
   def run
+    puts "Publishing..."
     messages.times do |i|
       message = create_message(i)
       queue.publish(message, routing_key: 'payments')
     end
+    puts "Published!"
   end
 
   def create_message(value)
