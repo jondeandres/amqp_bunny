@@ -4,6 +4,8 @@ GEM
     amq-protocol (1.6.0)
     bunny (0.9.0.rc1)
       amq-protocol (>= 1.6.0)
+    celluloid (0.14.1)
+      timers (>= 1.0.0)
     columnize (0.3.6)
     debugger (1.6.0)
       columnize (>= 0.3.1)
@@ -12,11 +14,13 @@ GEM
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
     msgpack (0.5.5)
+    timers (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bunny (~> 0.9.0.rc1)
+  celluloid (~> 0.14.1)
   debugger
   msgpack
