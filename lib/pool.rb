@@ -4,13 +4,28 @@ class Pool
   attr_accessor :connection, :num_threads
 
   def initialize(num_threads = nil)
-    @num_threads = num_threads || 2
+    @num_threads = num_threads.to_i || 2
     @connection = Bunny.new
   end
 
   def init
     connection.start
-    num_threads.times { pool.async.run }
+    process
+  end
+
+
+  def process
+    queue.subscribe(block: true) do |delivery_info, properties, payload|
+      pool.future.process(payload)
+    end
+  end
+
+  def channel
+    @channel ||= connection.create_channel
+  end
+
+  def queue
+    @queue ||= channel.queue('payments', durable: true, auto_delete: false)
   end
 
   def pool
