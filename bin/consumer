@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path("../lib", File.dirname(__FILE__))
 
-require 'consumer'
+require 'pool'
 
-consumer = Consumer.new
-consumer.run
-consumer.connection.close
+consumer = Pool.new
+consumer.init
